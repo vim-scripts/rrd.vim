@@ -1,0 +1,3 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=460
+
+The RRD.vim package is a vim module that acts as a frontend to manipulating the data from a round-robin database created by Tobi Oetiker's excellent  RRDTool program. It uses rrdtool to export the data into XML which it syntax highlights, and to re-import it again once you have made your changes. For a full description see the README_rrdplugin.txt file.
