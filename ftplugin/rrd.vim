@@ -13,8 +13,10 @@ setlocal foldtext=RRDfoldtext()
 "
 function! RRDRead()
   let b:rrdtmpfile = tempname() . '.rrdtmp'
+  let rrdfile = expand('<afile>')
   silent execute ':!rrdtool dump '. expand('<afile>'). ' > '.b:rrdtmpfile
   silent execute ':e '. b:rrdtmpfile
+  let b:rrdfile = rrdfile
 endfunction
 
 
@@ -26,7 +28,7 @@ function! RRDWrite()
   let a= system('rrdtool restore '. b:rrdtmpfile. ' '.b:rrdtmpfile. '-save')
 
   if(a == '')
-    call rename(b:rrdtmpfile.'-save', bufname("#"))
+    call rename(b:rrdtmpfile.'-save', b:rrdfile)
   else
     let a = strpart(a, 0, strlen(a)-1)
     echoerr "Error saving file: ". a
